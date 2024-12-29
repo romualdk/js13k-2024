@@ -1,9 +1,12 @@
-# js13k-2024
+# Triskai-deka-phobia card game
+
 Game for js13k 2024 Triskaidekaphobia
 
-https://js13kgames.com/
+https://romualdk.github.io/games/js13k-2024/
 
-https://medium.com/js13kgames/js13kgames-2024-start-and-theme-announcement-5d734f77da68
+https://js13kgames.com/games/triskai-deka-phobia-card-game
+
+![cover](https://github.com/romualdk/js13k-2024/blob/cd4d36f68f898a5d6ebd381eaa16dd15f6c4607e/media/Cover%20800x500.png?raw=true)
 
 # Description
 
@@ -19,8 +22,6 @@ There are point cards from 1 to 11.
 You are granted one Shamrock card at start.
 
 Good luck and win with as many green bombs as you can.
-
-![cover](https://github.com/romualdk/js13k-2024/blob/cd4d36f68f898a5d6ebd381eaa16dd15f6c4607e/media/Cover%20800x500.png?raw=true)
 
 # To do #
 
