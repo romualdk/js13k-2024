@@ -12,8 +12,8 @@
       <use href="#nose" fill="black" />
     </mask>
 </defs>
-  <use href="#head" fill="white" mask="url(#mask)" />
-  <use href="#jaw" fill="white" />
-  <use href="#bone" fill="white" />
-  <use href="#bone" fill="white" transform="scale(-1, 1)" />
+  <use href="#head" fill="#f9f6d6" mask="url(#mask)" />
+  <use href="#jaw" fill="#f9f6d6" />
+  <use href="#bone" fill="#f9f6d6" />
+  <use href="#bone" fill="#f9f6d6" transform="scale(-1, 1)" />
 </svg>

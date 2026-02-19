@@ -1,15 +1,15 @@
-var numerals = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII']
 var icons = {
-  attack: ['swords', 25, 80, 1],
-  defense: ['shield', 25, 85, 1],
-  shamrock: ['shamrock', 10, 70, 0.65],
-  death: ['skull', 25, 87, 1] 
+  attack: ['swords', 25, 45, 1.2],
+  defense: ['shield', 25, 45, 1.2],
+  shamrock: ['shamrock', 10, 30, 1],
+  death: ['skull', 25, 45, 1.3] 
 }
 
 var ctx = getElement('ctx')
-var timer = getElement('timer')
+//var timer = getElement('timer')
 var hands = getElement('hands')
 var stage = getElement('stage')
+var stageb = getElement('stageb')
 
 add(InfoArea('cpu'))
 add(InfoArea('player'))
@@ -129,21 +129,11 @@ function screenShake() {
   vibrate(500)
 }
 
-var timerAnim = document.createElementNS('http://www.w3.org/2000/svg','animate')
-timerAnim.setAttribute("attributeName", "stroke-dashoffset")
-timerAnim.setAttribute("from", 360)
-timerAnim.setAttribute("to", 0);
-timerAnim.setAttribute("dur", `${TIMER_DURATION}s`)
-timerAnim.setAttribute("fill", "forwards")
-timer.appendChild(timerAnim)
-
 /* START GAME */
 progressCpu()
 resetGame()
 
-function updateStageInfo() {
-  stage.innerHTML = `Stage ${stageNumber}`
-}
+function updateStageInfo() {}
 
 function progressPlayer() {
   playerLv += 1
@@ -194,7 +184,6 @@ function resetGame() {
 
   turn = 0
   isActionTime = false
-  toggleTurns()
 
   addShamrocks(SHAMROCKS_ON_START)
 
@@ -222,13 +211,11 @@ function removeAllCards() {
 var turnTimer = null
 
 function resetTimer() {
-  timerAnim.beginElement()
   clearTimeout(turnTimer)
   turnTimer = setTimeout(onTimer, TIMER_DURATION * 1000)
 }
 
 function onTimer() {
-  toggleTurns()
   toggleHands()
 
   if(turn == 1) {
@@ -258,20 +245,7 @@ function changeTurn() {
 }
 
 function toggleHands() {
-  toggleTurns()
   hands.style.display = turn == 0 ? "block" : "none"
-}
-
-function toggleTurns() {
-  cputurn.classList.remove('active')
-  playerturn.classList.remove('active')
-
-  if(turn == 0) {
-    playerturn.classList.add('active')
-  }
-  else {
-    cputurn.classList.add('active')
-  }
 }
 
 function resetPlayerActionBar() {
@@ -797,7 +771,6 @@ function strToHtml(str) {
 
 function newCard(type, value = 0, side = 'back') {
   var cardtype = value == 13 ? "death" : value == 12 ? "shamrock" : type
-  var numeral = numerals[value]
 
   var icon = icons[cardtype][0]
   var x = icons[cardtype][1]
@@ -807,8 +780,8 @@ function newCard(type, value = 0, side = 'back') {
   var str = `<div class="card ${cardtype} ${side}" deck="${type}">
   <div class="bg">
   <svg width="100%" height="100%">
-      <text class="value" x="6" y="17">${value}</text>
-      <text class="numeral" x="50%" y="38%">${numeral}</text>
+      <text class="value" x="8" y="20">${value}</text>
+      <text class="value bottom" x="8" y="20">${value}</text>
     </svg>
     <img class="icon" src="img/${icon}.svg" style="transform: translate(${x}px, ${y}px) scale(${scale})" />
   </div>
@@ -822,25 +795,23 @@ function newCard(type, value = 0, side = 'back') {
 function InfoArea(type) {
   if(type == 'cpu') {
     t = 145
-    x = 18
+    x = 160
     x2 = 495
     y2 = 40
     s2 = 1.5
     x3 = 540
     y3 = 235
     s3 = 2.5
-    l2 = 78
   }
   else {
     t = 1000
-    x = 290
+    x = 160
     x2 = 40
     y2 = 10
     s2 = 3
     x3 = 90
     y3 = -15
     s3 = 2.5
-    l2 = 350
   }
 
   var str = `<div id="${type}" style="left: 0px; top: ${t}px; width: 100%; height: 270px">
@@ -854,15 +825,12 @@ function InfoArea(type) {
       <rect x="${x + 56}" y="145" width="360" height="24" fill="#262c45" />
     </svg>
 
-    <img id="${type}image" src="img/${type}.svg" style="position: absolute; left: ${x2}px; top: ${y2}px; transform: scale(${s2}); z-index: 2;"/>
-    <img id="${type}turn" src="img/${type}turn.svg" style="position: absolute; left: ${x3}px; top: ${y3}px; transform: scale(${s3}); z-index: 3;"/>
-
-    <svg id="${type}hpbar" style="left: ${l2}px; top: 99px; width: 352px; height: 40px">
+    <svg id="${type}hpbar" style="left: ${x+60}px; top: 99px; width: 352px; height: 40px">
       <rect class="hp" x="0" y="0" width="352" height="32" fill="#f00" />
       <rect class="hp" x="0" y="0" width="352" height="8" fill="#d00" />
     </svg>
 
-    <svg id="${type}actionbar" style="left: ${l2}px; top: 149px; width: 352; height: 18">
+    <svg id="${type}actionbar" style="left: ${x+60}px; top: 149px; width: 352; height: 18">
       <rect x="0" y="0" width="352" height="16" fill="#ffe415" />
       <rect x="0" y="0" width="352" height="6" fill="#e27f1b" />
     </svg>

@@ -9,6 +9,6 @@
     <path d="M -35 -4 L 35 3 L 35 35 L -35 35 Z" />
   </clipPath>
 </defs>
-  <use x="0" y="0" href="#sword" fill="white" transform="translate(-5 0) rotate(40)" clip-path="url(#right)" />
-  <use x="0" y="0" href="#sword" fill="white" transform="translate(5 0) rotate(-40)" />
+  <use x="0" y="0" href="#sword" fill="#f9f6d6" transform="translate(-5 0) rotate(40)" clip-path="url(#right)" />
+  <use x="0" y="0" href="#sword" fill="#f9f6d6" transform="translate(5 0) rotate(-40)" />
 </svg>
